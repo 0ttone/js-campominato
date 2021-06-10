@@ -14,6 +14,8 @@
 //    le successive operazioni
 //2)   while condiziona lunghezza array, push num in list condizionato da presenza dello stesso
 // sequenza standard replicabile quindi function -> 
+
+
 var outputElement = document.getElementById('output')
 
 
@@ -36,6 +38,51 @@ while (listNumCpu.length < 16){
 }
 console.log(listNumCpu);
 outputElement.innerText = '\n test 16 num cpu '+listNumCpu;
+
+/*
+3)ora per una condizione while inferiore a 84 volte chiedi inserimento numero
+unico (prompt + check duplicato con alert dopo verifica notincludes + riproponi prompt)
+inventarsi doppia condizione di verifica con listNumCpu->
+     4a) se vera partita finita quindi è un || a partire dal confronto con listcpu
+         ovvero parte dalla condizione che non conteggia il numero e fine
+     4b) se ok doppio confronto (ovvero falso) va a popolare listNumPlayer 
+         e ripropone prompt inserimento
+         ....farlo
+*/
+
+while (listNumPlayer.length < 84){
+      var numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"))
+
+      while (isNaN(numPlayer) || numPlayer < 1 || numPlayer > 100) {
+            alert('Attenzione! devi inserire un numero da 1 a 100')
+            numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"));
+      }
+      if(!listNumCpu.includes(numPlayer)) {
+            if (!listNumPlayer.includes(numPlayer)){
+                  listNumPlayer.push(numPlayer)
+            } else {
+                  alert("hai perso")
+                  break;
+            }
+            else{
+                  alert("inserisci un numero diverso sempre da 1 a 100")
+            }
+
+
+
+      }
+
+}
+console.log (listNumPlayer)
+
+console.log(numPlayer)
+
+        
+      
+
+
+      
+
 
 
 
