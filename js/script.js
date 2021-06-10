@@ -13,7 +13,7 @@
 //1) fai generare  16 numeri casuali unici che vadano a popolare una lista di confronto per
 //    le successive operazioni
 //2)   while condiziona lunghezza array, push num in list condizionato da presenza dello stesso
-// sequenza standard replicabile quindi function -> 
+// sequenza standard replicabile? quindi function -> 
 
 
 var outputElement = document.getElementById('output')
@@ -26,10 +26,11 @@ function randomNumber(min, max) {
 var listNumCpu =[]
 var listNumPlayer =[]
 var maxNum = 100
+var qtyNumRnd = 16
 
 
 
-while (listNumCpu.length < 16){
+while (listNumCpu.length < qtyNumRnd){
       var randomNumCpu =randomNumber(1, maxNum);
       if (!listNumCpu.includes(randomNumCpu)){
             listNumCpu.push(randomNumCpu)
@@ -43,44 +44,54 @@ outputElement.innerText = '\n test 16 num cpu '+listNumCpu;
 3)ora per una condizione while inferiore a 84 volte chiedi inserimento numero
 unico (prompt + check duplicato con alert dopo verifica notincludes + riproponi prompt)
 inventarsi doppia condizione di verifica con listNumCpu->
-     4a) se vera partita finita quindi è un || a partire dal confronto con listcpu
-         ovvero parte dalla condizione che non conteggia il numero e fine
+     4a) se vera partita finita quindi BREAK che fai prima esci a WHILE
+         
      4b) se ok doppio confronto (ovvero falso) va a popolare listNumPlayer 
          e ripropone prompt inserimento
          ....farlo
 */
 
-var loose = false
 
-while (listNumPlayer.length < 5 && loose === false){
-      var numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"))
-
-      while (isNaN(numPlayer) || numPlayer < 1 || numPlayer > 100) {
-            alert("Attenzione! devi inserire un numero da 1 a 100")
-            numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"));
+ //messo 5 per facilitare 
+while (listNumPlayer.length < 5  ){
+      var numPlayer = parseInt(prompt("Inserisci un numero tra 1 e " + maxNum))
+     
+      //ora verifico correttezza valori
+      while (isNaN(numPlayer) || numPlayer < 1 || numPlayer > maxNum) {
+            alert("Attenzione! devi inserire un numero da 1 e" + maxNum)
+            numPlayer = parseInt(prompt("Inserisci un numero tra 1 e " + maxNum));
       }
+     
+      //se è nella lista cpu esco dal while con break e alla fine stampo
+      if (listNumCpu.includes(numPlayer)){
+            break;
       
-      // if(!listNumPlayer.includes(numPlayer)) {
-            if (!listNumCpu.includes(numPlayer)){
-                  listNumPlayer.push(numPlayer);
-            } else {
-                  alert("hai perso");
-                  break;
-            }
-                  else {
-                  alert("inserisci un numero diverso sempre da 1 a 100");
-            }
-                  // if (listNumCpu.includes(numPlayer)){
-                  //     loose ===true
-                  }
-
-
-      // }
-
+            //se è nella lista lo comunico e vado avanti il numero non viene preso
+            //in considerazione nel octno
+      } else if (listNumPlayer.includes(numPlayer)){
+            alert("Hai già inserito il numero"),numPlayer;
+      
+            //se non è nella lista/array player pusho
+      } else if (!listNumPlayer.includes(numPlayer)){
+            listNumPlayer.push(numPlayer);
+            console.log ('lista player' + listNumPlayer)
+      
+      }
+           
 }
+//risultati
+if (listNumPlayer.length === 5){
+      alert("Complimenti! Il tuo punteggio è "+ listNumPlayer.length)
+}else {
+      alert("BOOOOOOOM! il tuo punteggio è " + listNumPlayer.lenght) 
+}
+
 console.log (listNumPlayer)
 
 console.log(numPlayer)
+
+      
+
 
         
       
