@@ -53,19 +53,20 @@ inventarsi doppia condizione di verifica con listNumCpu->
 while (listNumPlayer.length < 84){
       var numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"))
 
-      while (isNaN(numPlayer) || numPlayer < 1 || numPlayer > 100) {
-            alert('Attenzione! devi inserire un numero da 1 a 100')
-            numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"));
-      }
+      // while (isNaN(numPlayer) || numPlayer < 1 || numPlayer > 100) {
+      //       alert('Attenzione! devi inserire un numero da 1 a 100')
+      //       numPlayer = parseInt(prompt("Inserisci un numero da 1 a 100"));
+      // }
+      
       if(!listNumCpu.includes(numPlayer)) {
             if (!listNumPlayer.includes(numPlayer)){
-                  listNumPlayer.push(numPlayer)
+                  listNumPlayer.push(numPlayer);
             } else {
-                  alert("hai perso")
+                  alert("hai perso");
                   break;
             }
-            else{
-                  alert("inserisci un numero diverso sempre da 1 a 100")
+                  else {
+                  alert("inserisci un numero diverso sempre da 1 a 100");
             }
 
 
