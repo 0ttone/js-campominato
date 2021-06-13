@@ -15,6 +15,9 @@
 //2)   while condiziona lunghezza array, push num in list condizionato da presenza dello stesso
 // sequenza standard replicabile? quindi function -> 
 
+//aggiunta bonus con livelli - cambia il range di numeri casuali: 
+//con difficoltà 0 => tra 1 e 100 con difficoltà 1 => tra 1 e 80 con difficoltà 2 => tra 1 e 50
+
 
 var outputElement = document.getElementById('output')
 
@@ -30,9 +33,49 @@ var qtyNumRnd = 16
 
 
 
+
+/*con switch faccio scegliere livello all utente creando le opzioni che in sostanza cambiano la maxNum
+e quindi anche i tentativi    TODO tentativi player che sarà maxNum-qtyNumRnd
+
+prompt richiesta livello con check correttezza inserimento dati ???????? fare function del ciclo while check???
+
+*/
+var level = prompt ('Inserisci il NUMERO per il livello di difficoltà: 0 Facile, 1 Medio, 2 Difficile');
+
+//check inserimento
+while (isNaN(level) || level < 0 || level > 3){
+      alert('ATTENZIONE! Devi inserire un numero da 0 a 3');
+      level = prompt ('Inserisci il NUMERO per il livello di difficoltà: 0 Facile, 1 Medio, 2 Difficile');
+      
+}
+
+
+var playerAttempts = maxNum - qtyNumRnd;
+console.log('tentativi', playerAttempts)
+
+switch (level){
+      
+      case "0":
+            var maxNum = 100;
+            break;
+
+      case "1":
+            var maxNum = 80;
+            break;
+
+      case "2":
+            var maxNum = 50;
+            break;
+      
+      }
+
+
+//creazione dell array da 16 numeri condizionati dalla presenza nella lista
 while (listNumCpu.length < qtyNumRnd){
       var randomNumCpu =randomNumber(1, maxNum);
+      //se il numero generato non è già incluso
       if (!listNumCpu.includes(randomNumCpu)){
+      //allora push nella lista, chiudi e torna su fino alla condizione del while(in questo caso 16)
             listNumCpu.push(randomNumCpu)
       }
 
@@ -41,7 +84,7 @@ console.log(listNumCpu);
 outputElement.innerText = '\n test 16 num cpu '+listNumCpu;
 
 /*
-3)ora per una condizione while inferiore a 84 volte chiedi inserimento numero
+3)ora per una condizione while inferiore a maxNum meno 16 volte chiedi inserimento numero
 unico (prompt + check duplicato con alert dopo verifica notincludes + riproponi prompt)
 inventarsi doppia condizione di verifica con listNumCpu->
      4a) se vera partita finita quindi BREAK che fai prima esci a WHILE
@@ -81,9 +124,9 @@ while (listNumPlayer.length < 5  ){
 }
 //risultati
 if (listNumPlayer.length === 5){
-      alert("Complimenti! Il tuo punteggio è "+ listNumPlayer.length)
+      alert("Complimenti! Il tuo punteggio è "+ (listNumPlayer.length))
 }else {
-      alert("BOOOOOOOM! il tuo punteggio è " + listNumPlayer.lenght) 
+      alert("BOOOOOOOM! il tuo punteggio è " + (listNumPlayer.lenght)) 
 }
 
 console.log (listNumPlayer)
@@ -91,6 +134,13 @@ console.log (listNumPlayer)
 console.log(numPlayer)
 
       
+
+
+
+
+
+
+
 
 
         
